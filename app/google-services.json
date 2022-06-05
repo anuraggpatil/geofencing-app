@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1083534840377",
+    "project_id": "geofencing-major-project",
+    "storage_bucket": "geofencing-major-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083534840377:android:ee98bfde717741e228f3e8",
+        "android_client_info": {
+          "package_name": "com.conzura.geofencing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083534840377-d6h4q6djno4ofrq7pvcvhu5t6idgltgv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGrUIRNbXeTsozzMRM4GZYP_o3Q_mh2Mc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1083534840377-d6h4q6djno4ofrq7pvcvhu5t6idgltgv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083534840377:android:0dfa126b5c2fa69328f3e8",
+        "android_client_info": {
+          "package_name": "com.example.geofencingmajorproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083534840377-d6h4q6djno4ofrq7pvcvhu5t6idgltgv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGrUIRNbXeTsozzMRM4GZYP_o3Q_mh2Mc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1083534840377-d6h4q6djno4ofrq7pvcvhu5t6idgltgv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
