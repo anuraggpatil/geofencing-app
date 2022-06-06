@@ -56,6 +56,16 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <ImageButton
+                android:id="@+id/setGeofenceRadius"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#fb6c68"
+                android:layout_marginLeft="20dp"
+                android:tint="@color/white"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_baseline_check_24"/>
+
         </LinearLayout>
 
         <com.google.android.material.card.MaterialCardView

@@ -139,6 +139,22 @@ public class HomeFragment<onRequestPermissionResult> extends Fragment implements
 
         geofencingClient = LocationServices.getGeofencingClient(getContext());
         geofenceHelper = new GeofenceHelper(getContext());
+        firestore.collection("Admin").document(auth.getCurrentUser().getEmail()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(value.exists() && value !=null){
+                    GEOFENCE_RADIUS = value.getLong("Geofence Radius");
+                }
+            }
+        });
+//        firestore.collection("Admin").document(auth.getCurrentUser().getEmail()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot snapshot) {
+//                if(snapshot.exists()){
+//                    GEOFENCE_RADIUS = snapshot.getLong("Geofence Radius");
+//                }
+//            }
+//        });
 
         return inflater.inflate(R.layout.fragment_home, container, false);
     }

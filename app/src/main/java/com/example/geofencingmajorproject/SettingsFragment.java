@@ -13,16 +13,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.Exclude;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.IgnoreExtraProperties;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -80,6 +88,8 @@ public class SettingsFragment extends Fragment {
     FirebaseFirestore firestore;
     FirebaseAuth firebaseAuth;
 
+    ImageButton setGeofenceRadius;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,10 +100,49 @@ public class SettingsFragment extends Fragment {
         GeofenceRadius = view.findViewById(R.id.geofenceRadius);
         usersList = view.findViewById(R.id.usersList);
         LogoutBtn = (Button) view.findViewById(R.id.LogoutSetting);
+        setGeofenceRadius = view.findViewById(R.id.setGeofenceRadius);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
 
+        setGeofenceRadius.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!GeofenceRadius.getText().toString().equals("")) {
+                    Map<String, Object> city = new HashMap<>();
+                    city.put("Geofence Radius", Integer.parseInt(GeofenceRadius.getText().toString()));
+
+                    firestore.collection("Admin").document(firebaseAuth.getCurrentUser().getEmail())
+                            .update(city)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                                    Toast.makeText(getContext(), "Geofence Radius Updated to " + GeofenceRadius.getText(), Toast.LENGTH_SHORT).show();
+                                    GeofenceRadius.setText("");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error writing document", e);
+                                }
+                            });
+//                Map<String, Object> updatedGeofenceRadius = new HashMap<>();
+//                updatedGeofenceRadius.put("Geofence Radius", GeofenceRadius.getText());
+////                Toast.makeText(getContext(), "Geofence Radius is " + updatedGeofenceRadius.size(), Toast.LENGTH_SHORT).show();
+//                firestore.collection("Admin").document(firebaseAuth.getCurrentUser().getEmail()).update(updatedGeofenceRadius).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void unused) {
+//                        GeofenceRadius.setText("");
+//                    }
+//                });
+                }
+                else{
+                    Toast.makeText(getContext(), "Please Enter valid input", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         LogoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
